@@ -4,9 +4,6 @@ import play.api._
 import play.api.mvc._
 import play.api.i18n.Messages
 import util.Secured
-import navigation.{pages,Item,Menu}
-
-case class PageContext(menu: Menu, activeItemOrTitle: Either[Item, String])
 
 object Application extends Controller with Secured {
 	import play.api.data._
@@ -15,13 +12,12 @@ object Application extends Controller with Secured {
 	import scala.concurrent.ExecutionContext.Implicits.global
 	import play.api.libs.json.Json
 
-	implicit val menu = Menu.fromPageKeys(pages.keys)
+	def indexPage = Sessioned { sr =>
+		Ok(views.html.pages.home())
+	}
 
-	def page(path: String) = Sessioned { sr =>
-		(menu.get(path) map { case (page, item) => (page, Left(item)) }) orElse (pages.get(path) map ((_, Right(Messages(s"$path.title"))))) match {
-			case Some((page, itemOrTitle)) => Ok(page.render(PageContext(menu, itemOrTitle)))
-			case None => NotFound
-		}
+	def documentsPage = Sessioned { sr =>
+		Ok(views.html.pages.documents())
 	}
 
 	val createForm = Form(

@@ -1,7 +1,0 @@
-@(scripts: Html = Html(""))(content: Html)(implicit ctx: PageContext)
-
-@defining(ctx.activeItemOrTitle match { case Left(item) => item.title case Right(title) => title }) { title =>
-	@main(title, ctx.activeItemOrTitle.left.toOption, scripts) {
-		@content
-	}(ctx.menu)
-}

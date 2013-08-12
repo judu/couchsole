@@ -1,7 +1,6 @@
-@()(implicit ctx: PageContext)
 @import helper._
 
-@page() {
+@main("Home") {
 	@helper.form(action = routes.Application.createDocument, 'class -> "form-horizontal") {
 	<div class="row form-group">
 		<input id="id" class="form-control" type="text" name="id" />

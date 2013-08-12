@@ -26,7 +26,7 @@ object Welcome extends Controller {
 		val token = Option(CouchbaseManager.connect(h,po,b,pa))
 		token.fold(BadRequest(views.html.Welcome.login(loginForm)).withNewSession)(tok => {
 			val infos = CouchbaseManager.getConnection(tok)
-			SeeOther(routes.Application.page("home").url).withSession(
+			SeeOther(routes.Application.indexPage.url).withSession(
 				"conntok" -> tok,
 				"dburi" -> infos.uri,
 				"dbbucket" -> b,

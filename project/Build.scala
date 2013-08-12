@@ -15,18 +15,11 @@ object ApplicationBuild extends Build {
     scalaVersion := "2.10.2",
     scalacOptions ++= Seq("-feature", "-Xlint", "-deprecation", "-unchecked"),
     resolvers ++= Seq(
-      Resolver.sonatypeRepo("snapshots"),
-      "Typesafe repository" at "http://repo.typesafe.com/typesafe/releases/"
+      "Typesafe repository" at "http://repo.typesafe.com/typesafe/releases/",
+		"Couchbase maven repository" at "http://files.couchbase.com/maven2/"
     )
   )
 
 
-  lazy val main = play.Project(appName,appVersion,appDependencies).settings(baseSettings:_*) dependsOn macroTemplates
-
-  lazy val macroTemplates = Project("macro-templates", file("macro-templates")).settings(baseSettings:_*).settings(
-    scalaVersion := "2.10.3-SNAPSHOT",
-    scalaOrganization := "org.scala-lang.macro-paradise",
-    libraryDependencies <+= (scalaOrganization, scalaVersion)(_ % "scala-reflect" % _),
-    libraryDependencies += "play" %% "play" % "2.1.2"
-  )
+  lazy val main = play.Project(appName,appVersion,appDependencies).settings(baseSettings:_*)
 }
