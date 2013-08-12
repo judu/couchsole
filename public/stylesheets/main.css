@@ -1,0 +1,12 @@
+#loginhostname {
+	width: 350px;
+}
+
+#loginport {
+	width: 70px;
+	margin-left: 5px;
+}
+
+#loginbucket,#loginpassword {
+	width: 425px;
+}

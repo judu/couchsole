@@ -1,0 +1,14 @@
+@()(implicit ctx: PageContext)
+@import helper._
+
+@page() {
+	@helper.form(action = routes.Application.createDocument, 'class -> "form-horizontal") {
+	<div class="row form-group">
+		<input id="id" class="form-control" type="text" name="id" />
+	</div>
+	<div class="row form-group">
+		<textarea id="data" name="data" cols="30" rows="10" class="form-control"></textarea>
+	</div>
+	<input type="submit" value="Create" />
+	}
+}
