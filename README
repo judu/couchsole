@@ -1,4 +1,2 @@
-This is your new Play 2.1 application
-=====================================
-
-This file will be packaged with your application, when using `play dist`.
+This project is not meant to use at the moment it's still an early PoC
+to study the REST API.
